@@ -20,10 +20,10 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "registration_time", nullable = true)
+    @Column(name = "registration_time")
     private long registrationTime;
 
-    @Column(name = "last_login_time", nullable = true)
+    @Column(name = "last_login_time")
     private long lastLoginTime;
 
     public User() {
