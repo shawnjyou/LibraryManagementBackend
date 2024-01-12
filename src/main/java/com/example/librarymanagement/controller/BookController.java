@@ -24,7 +24,7 @@ public class BookController {
     }
 
     @DeleteMapping("/book/{isbn}")
-    public ResponseEntity<Void> deleteByIsbn(@PathVariable long isbn) {
+    public ResponseEntity<Void> deleteByIsbn(@PathVariable Long isbn) {
         Optional<Book> book = bookService.findByIsbn(isbn);
         if (book.isPresent()) {
             bookService.deleteByIsbn(isbn);
@@ -35,7 +35,7 @@ public class BookController {
     }
 
     @PutMapping("/book/{isbn}")
-    public ResponseEntity<Void> updateByIsbn(@PathVariable long isbn, @RequestBody Book updateBook) {
+    public ResponseEntity<Void> updateByIsbn(@PathVariable Long isbn, @RequestBody Book updateBook) {
         Optional<Book> book = bookService.findByIsbn(isbn);
         if (book.isPresent()) {
             bookService.updateByIsbn(isbn, updateBook);
@@ -52,7 +52,7 @@ public class BookController {
     }
 
     @GetMapping("/book/{isbn}")
-    public ResponseEntity<Optional<Book>> findById(@PathVariable long isbn) {
+    public ResponseEntity<Optional<Book>> findById(@PathVariable Long isbn) {
         Optional<Book> book = bookService.findByIsbn(isbn);
         if (book.isPresent()) {
             return new ResponseEntity<>(book, HttpStatus.OK);

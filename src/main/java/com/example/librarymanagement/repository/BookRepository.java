@@ -12,9 +12,9 @@ import java.util.Optional;
 @Transactional
 @Repository
 public interface BookRepository extends CrudRepository<Book, Integer> {
-    Optional<Book> findByIsbn(long isbn);
+    Optional<Book> findByIsbn(Long isbn);
 
     @Modifying
     @Query("DELETE FROM Book b WHERE b.isbn = :isbn")
-    void deleteByIsbn(long isbn);
+    void deleteByIsbn(Long isbn);
 }

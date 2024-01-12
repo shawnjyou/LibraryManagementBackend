@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Book {
     @Id
     @Column(name = "isbn", nullable = false)
-    private long isbn;
+    private Long isbn;
 
     @Column(name = "author", nullable = false)
     private String author;
@@ -21,18 +21,18 @@ public class Book {
     public Book() {
     }
 
-    public Book(long isbn, String author, String name, String introduction) {
+    public Book(Long isbn, String author, String name, String introduction) {
         this.isbn = isbn;
         this.author = author;
         this.name = name;
         this.introduction = introduction;
     }
 
-    public long getIsbn() {
+    public Long getIsbn() {
         return isbn;
     }
 
-    public void setIsbn(long isbn) {
+    public void setIsbn(Long isbn) {
         this.isbn = isbn;
     }
 

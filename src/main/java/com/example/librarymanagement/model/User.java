@@ -21,15 +21,15 @@ public class User {
     private String name;
 
     @Column(name = "registration_time")
-    private long registrationTime;
+    private Long registrationTime;
 
     @Column(name = "last_login_time")
-    private long lastLoginTime;
+    private Long lastLoginTime;
 
     public User() {
     }
 
-    public User(int id, String phone, String password, String name, long registrationTime, long lastLoginTime) {
+    public User(int id, String phone, String password, String name, Long registrationTime, Long lastLoginTime) {
         this.id = id;
         this.phone = phone;
         this.password = password;
@@ -70,19 +70,19 @@ public class User {
         this.name = name;
     }
 
-    public long getRegistrationTime() {
+    public Long getRegistrationTime() {
         return registrationTime;
     }
 
-    public void setRegistrationTime(long registrationTime) {
+    public void setRegistrationTime(Long registrationTime) {
         this.registrationTime = registrationTime;
     }
 
-    public long getLastLoginTime() {
+    public Long getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(long lastLoginTime) {
+    public void setLastLoginTime(Long lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 }

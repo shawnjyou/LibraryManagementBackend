@@ -20,7 +20,7 @@ public class UserService {
     }
 
     public User addOneUser(User user) {
-        long unixTimestampSeconds = System.currentTimeMillis() / 1000;
+        Long unixTimestampSeconds = System.currentTimeMillis() / 1000;
         user.setRegistrationTime(unixTimestampSeconds);
         return userRepository.save(user);
     }

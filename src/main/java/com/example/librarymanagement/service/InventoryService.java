@@ -19,7 +19,7 @@ public class InventoryService {
     }
 
     public Inventory addOneInventory(Inventory inventory) {
-        long unixTimestampSeconds = System.currentTimeMillis() / 1000;
+        Long unixTimestampSeconds = System.currentTimeMillis() / 1000;
         inventory.setStoreTime(unixTimestampSeconds);
         return inventoryRepository.save(inventory);
     }

@@ -7,4 +7,6 @@ INSERT INTO books (isbn, author, introduction, name) VALUES (1234567890, 'John D
 INSERT INTO books (isbn, author, introduction, name) VALUES (9876543210, 'Jane Smith', 'A captivating novel', 'Book 2');
 INSERT INTO books (isbn, author, introduction, name) VALUES (1112233445, 'Alice Johnson', 'A guide to something', 'Book 3');
 -- Inventory
-INSERT INTO Inventory (isbn, store_time, status) VALUES (1234567890, EXTRACT(EPOCH FROM CURRENT_TIMESTAMP), 'AVAILABLE')
+INSERT INTO inventories (isbn, store_time, status) VALUES (1234567890, EXTRACT(EPOCH FROM CURRENT_TIMESTAMP), 'AVAILABLE');
+-- BorrowRecord
+INSERT INTO borrow_records (user_id, inventory_id, borrow_date) VALUES (1, 1, EXTRACT(EPOCH FROM CURRENT_TIMESTAMP));

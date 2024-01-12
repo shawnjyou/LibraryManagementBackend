@@ -3,7 +3,7 @@ package com.example.librarymanagement.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Inventory")
+@Table(name = "inventories")
 public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +13,7 @@ public class Inventory {
     private Book book;
 
     @Column(name = "store_time")
-    private long storeTime;
+    private Long storeTime;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
@@ -22,7 +22,7 @@ public class Inventory {
     public Inventory() {
     }
 
-    public Inventory(Book book, long storeTime, InventoryStatus status) {
+    public Inventory(Book book, Long storeTime, InventoryStatus status) {
         this.book = book;
         this.storeTime = storeTime;
         this.status = status;
@@ -44,11 +44,11 @@ public class Inventory {
         this.book = book;
     }
 
-    public long getStoreTime() {
+    public Long getStoreTime() {
         return storeTime;
     }
 
-    public void setStoreTime(long storeTime) {
+    public void setStoreTime(Long storeTime) {
         this.storeTime = storeTime;
     }
 

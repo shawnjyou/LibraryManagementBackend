@@ -21,11 +21,11 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public void deleteByIsbn(long isbn) {
+    public void deleteByIsbn(Long isbn) {
         bookRepository.deleteByIsbn(isbn);
     }
 
-    public void updateByIsbn(long isbn, Book book) {
+    public void updateByIsbn(Long isbn, Book book) {
         book.setIsbn(isbn);
         bookRepository.save(book);
     }
@@ -34,7 +34,7 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Optional<Book> findByIsbn(long isbn) {
+    public Optional<Book> findByIsbn(Long isbn) {
         return bookRepository.findByIsbn(isbn);
     }
 }
