@@ -1,16 +1,18 @@
 package com.example.librarymanagement.service;
 
+import com.example.librarymanagement.PasswordHasher;
 import com.example.librarymanagement.model.User;
 import com.example.librarymanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
+
+    String salt = "N6woWXGs8NFXnfLwe7XtaQ==";
 
     private final UserRepository userRepository;
 
@@ -21,6 +23,8 @@ public class UserService {
 
     public User addOneUser(User user) {
         Long unixTimestampSeconds = System.currentTimeMillis() / 1000;
+        String hashedPassword = PasswordHasher.hashPassword(user.getPassword(), salt);
+        user.setPassword(hashedPassword);
         user.setRegistrationTime(unixTimestampSeconds);
         return userRepository.save(user);
     }
@@ -49,5 +53,9 @@ public class UserService {
 
     public Optional<User> findById(Integer id) {
         return userRepository.findById(id);
+    }
+
+    public List<User> findByPhone(String phone) {
+        return userRepository.findByPhone(phone);
     }
 }

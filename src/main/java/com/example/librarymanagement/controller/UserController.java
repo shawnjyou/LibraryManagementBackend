@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,10 +18,15 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/user")
+    @PostMapping("/user/register")
     public ResponseEntity<User> addOneUser(@RequestBody User user) {
-        User addedUser = userService.addOneUser(user);
-        return new ResponseEntity<>(addedUser, HttpStatus.CREATED);
+        List<User> userList = userService.findByPhone(user.getPhone());
+        if (userList.isEmpty()) {
+            User addedUser = userService.addOneUser(user);
+            return new ResponseEntity<>(addedUser, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
     }
 
     @DeleteMapping("/user/{id}")
