@@ -1,12 +1,12 @@
 package com.example.librarymanagement.controller;
 
+import com.example.librarymanagement.dto.LoginRequestDTO;
 import com.example.librarymanagement.model.User;
 import com.example.librarymanagement.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,12 +20,29 @@ public class UserController {
 
     @PostMapping("/user/register")
     public ResponseEntity<User> addOneUser(@RequestBody User user) {
-        List<User> userList = userService.findByPhone(user.getPhone());
-        if (userList.isEmpty()) {
+        User existUser = userService.findByPhone(user.getPhone());
+        if (existUser == null) {
             User addedUser = userService.addOneUser(user);
             return new ResponseEntity<>(addedUser, HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+    }
+
+    @PostMapping("/user/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequestDTO loginRequest) {
+        String phone = loginRequest.getPhone();
+        String password = loginRequest.getPassword();
+
+        User existUser = userService.findByPhone(phone);
+        if (existUser == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            if (userService.authenticateUser(phone, password)) {
+                return ResponseEntity.ok("Login successful");
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+            }
         }
     }
 

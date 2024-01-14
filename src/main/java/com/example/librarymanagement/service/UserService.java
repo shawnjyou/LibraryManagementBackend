@@ -29,6 +29,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public boolean authenticateUser(String phone, String password) {
+        User user = userRepository.findFirstByPhone(phone);
+        if (user != null) {
+            String hashedPassword = PasswordHasher.hashPassword(password, salt);
+            return hashedPassword.equals(user.getPassword());
+        }
+        return false;
+    }
+
     public void deleteById(Integer id) {
         userRepository.deleteById(id);
     }
@@ -55,7 +64,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public List<User> findByPhone(String phone) {
-        return userRepository.findByPhone(phone);
+    public User findByPhone(String phone) {
+        return userRepository.findFirstByPhone(phone);
     }
 }
